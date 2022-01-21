@@ -1,6 +1,5 @@
-import axios from 'axios'
 
-const create = async (_credentials) => {
+const create = (_credentials) => {
 
     //Cleaning inputs and giving warnings
 
@@ -39,4 +38,4 @@ const create = async (_credentials) => {
 
 }
 
-export default create
+module.exports = create
