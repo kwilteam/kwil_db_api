@@ -1,12 +1,11 @@
 const axios = require('axios')
 const create = require('./create.js')
+const Transaction = require('./transactions.js')
 
 const createConnector = (_credentials) => {
     const params = create(_credentials)
-    class kwildb {
-        constructor(_credentials) {
-            
-        }
+    class KwilDB {
+
         connectionParams = params
 
         query = async (_query, _store = false) => {
@@ -51,9 +50,13 @@ const createConnector = (_credentials) => {
             const response = await axios(_params)
             return response.data
         }
+
     }
 
-    const retVal = new kwildb()
+    const retVal = new KwilDB()
+    retVal.createTransaction = () => {
+        return new Transaction(params)
+    }
     return retVal
 }
 
