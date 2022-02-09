@@ -52,6 +52,10 @@ const createConnector = (_credentials) => {
             return response.data
         }
 
+        createTable = async (_name, _schema) => {
+            
+        }
+
     }
 
     const retVal = new KwilDB()
