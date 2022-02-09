@@ -18,7 +18,8 @@ const createMoat = async (_registry, _moat, _signature, _walletAddr) => {
             address: _walletAddr
         }
     };
-    const response = await axios(params)
+    let response = await axios(params)
+    response.data.apiKey = apiKey
     return response.data
 }
 

@@ -53,7 +53,7 @@ const createConnector = (_credentials) => {
         }
 
         createTable = async (_name, _schema) => {
-            
+            await table.createTable(_name.toLowerCase(), _schema, params)
         }
 
     }

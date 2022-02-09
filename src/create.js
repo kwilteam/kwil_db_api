@@ -4,8 +4,8 @@ const create = (_credentials) => {
     //Cleaning inputs and giving warnings
 
     //Trying to make this idiot-proof
-    if (_credentials.protocol == null || _credentials.host == null || _credentials.user == null || _credentials.password == null) {
-        throw new Error('Missing a credential.  Mandatory are protocol, host, user, database, and password')
+    if (_credentials.protocol == null || _credentials.host == null || _credentials.apiKey == null || _credentials.moat == null) {
+        throw new Error('Missing a credential.  Mandatory are protocol, host, apiKey, and moat')
         console.log('Input cleaning for connection is disabled, but I can tell you right now the rest of this shit isnt gonna work')
     }
 
@@ -21,15 +21,14 @@ const create = (_credentials) => {
         _url = `${_credentials.protocol}://${_credentials.host}`
     }
 
-    //Instantiate params.  Backend will handle the pg connection (host and port), this client just needs user to provide, database, and password
+    //Instantiate params.  Backend will handle the pg connection, this client just needs moat and apiKey
     const params = {
         url: _url,
         method: 'post',
         timeout: 20000,
         data: {
-            user: _credentials.user,
-            password: _credentials.password,
-            moat: _credentials.moat
+            moat: _credentials.moat,
+            apiKey: _credentials.apiKey
         }
     };
     return params
