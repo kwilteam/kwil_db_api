@@ -1,7 +1,8 @@
 const axios = require('axios')
 const create = require('./create.js')
 const Transaction = require('./transactions.js')
-
+const {createWebSocket} = require('./websocket.js')
+const table = require('./createTable.js') //Importing like this because I want the function to be called createTable
 const createConnector = (_credentials) => {
     const params = create(_credentials)
     class KwilDB {
@@ -17,8 +18,8 @@ const createConnector = (_credentials) => {
             return response.data
         }
 
-        storeFile = async (_location, _file, _store=true) => {
-            let _params = params //we must copy the params since we will be writing to them
+        storeFile = async (_location, _file, _store=false) => {
+            let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
 
             //Putting a warning here, honestly for my sake more than anything else
 
@@ -34,8 +35,8 @@ const createConnector = (_credentials) => {
             return response.data
         }
 
-        storePhoto = async (_location, _file, _store = true) => {
-            let _params = params //we must copy the params since we will be writing to them
+        storeJPEG = async (_location, _file, _store = false) => {
+            let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
 
             //Putting a warning here, honestly for my sake more than anything else
 
@@ -56,6 +57,10 @@ const createConnector = (_credentials) => {
     const retVal = new KwilDB()
     retVal.createTransaction = () => {
         return new Transaction(params)
+    }
+    retVal.createWebSocket = () => {
+        const b = createWebSocket(params)
+        return b
     }
     return retVal
 }

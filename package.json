@@ -1,6 +1,6 @@
 {
-  "name": "kwildb_connector",
-  "version": "1.0.14",
+  "name": "kwildb",
+  "version": "1.0.10",
   "main": "index.js",
   "scripts": {
     "test": "jest"
