@@ -3,7 +3,9 @@ const create = require('./create.js')
 const Transaction = require('./transactions.js')
 const {createWebSocket} = require('./websocket.js')
 const table = require('./createTable.js') //Importing like this because I want the function to be called createTable
-const createConnector = (_credentials) => {
+const { sha384 } = require('./utils/sha384.js')
+const createConnector = (_credentials, _secret) => {
+    const secret = _secret.slice()
     const params = create(_credentials)
     class KwilDB {
 
@@ -11,8 +13,11 @@ const createConnector = (_credentials) => {
 
         query = async (_query, _store = false) => {
             let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
+            const timestamp = Date.now()
             _params.data.query = _query
             _params.data.store = _store
+            _params.data.timestamp = timestamp
+            _params.data.hash = sha384(_query+timestamp.toString()+secret)
             _params.url = params.url + '/raw' //use .slice to copy
             const response = await axios(_params)
             return response.data

@@ -5,7 +5,9 @@ const {encryptKey} = require('./utils/encryptKey.js')
 const createMoat = async (_registry, _moat, _signature, _walletAddr) => {
 
     const apiKey = generateAPIKey()
+    const secret = generateAPIKey()
     const encryptedKey = await encryptKey(_signature, _walletAddr, apiKey)
+    const encryptedSecret = await encryptKey(_signature, _walletAddr, secret)
 
     const params = {
         url: _registry+'/createMoat',
@@ -15,11 +17,13 @@ const createMoat = async (_registry, _moat, _signature, _walletAddr) => {
             encryptedKey: encryptedKey,
             key: apiKey,
             moat: _moat,
-            address: _walletAddr
+            address: _walletAddr,
+            secret: encryptedSecret
         }
     };
     let response = await axios(params)
     response.data.apiKey = apiKey
+    response.data.secret = secret
     return response.data
 }
 
