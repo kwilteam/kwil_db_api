@@ -40,57 +40,6 @@ const createConnector = (_credentials, _secret) => {
             return response.data
         }
 
-        addMoat = async (_moat, _owner,_apiKey,_secret, _store=false) => {
-            let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
-
-            //Putting a warning here, honestly for my sake more than anything else
-
-            _params.data.moat = _moat
-            _params.data.owner = _owner
-            _params.data.apiKey = _apiKey
-            _params.data.secret = _secret
-            _params.data.store = _store
-            _params.url = _params.url + '/addMoat'
-            const response = await axios(_params)
-            return response.data
-        }
-
-        addSecret = async (_moat, _secret,_timestamp, _store=false) => {
-            let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
-
-            //Putting a warning here, honestly for my sake more than anything else
-
-            _params.data.moat = _moat
-            _params.data.timestamp = _timestamp
-            _params.data.secret = _secret
-            _params.data.store = _store
-            _params.url = _params.url + '/addSecret'
-            const response = await axios(_params)
-            return response.data
-        }
-
-        getMoats = async (_owner) => {
-            let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
-
-            //Putting a warning here, honestly for my sake more than anything else
-
-            _params.data.owner = _owner
-            _params.url = _params.url + '/getMoats'
-            const response = await axios(_params)
-            return response.data
-        }
-
-        getSecrets = async (_moat) => {
-            let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
-
-            //Putting a warning here, honestly for my sake more than anything else
-
-            _params.data.moat = _moat
-            _params.url = _params.url + '/getSecrets'
-            const response = await axios(_params)
-            return response.data
-        }
-
         storeJPEG = async (_location, _file, _store = false) => {
             let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
 
