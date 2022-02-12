@@ -4,8 +4,9 @@ const axios = require("axios");
 const table = require("./createTable");
 const Transaction = require("./transactions");
 const {createWebSocket} = require("./websocket");
+const ethers = require('ethers');
 const createConnectorRegistry = (_credentials, _secret) => {
-    const secret = _secret.slice()
+    //const secret = _secret.slice()
     const params = createRegistry(_credentials)
     class KwilDB {
 
@@ -60,6 +61,57 @@ const createConnectorRegistry = (_credentials, _secret) => {
             _params.url = _params.url + '/getSecrets'
             const response = await axios(_params)
             return response.data
+        }
+
+        getEncryptedAPIKey = async (_moat) => {
+            let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
+
+            //Putting a warning here, honestly for my sake more than anything else
+
+            _params.data.moat = _moat
+            _params.url = _params.url + '/getEncryptedAPIKey'
+            const response = await axios(_params)
+            //console.log(response.data)
+            return response.data
+        }
+
+        updateSecretInternal = async (_moat,_signature,_newSecret,_owner,_store=false) => {
+            let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
+
+            //Putting a warning here, honestly for my sake more than anything else
+
+            _params.data.moat = _moat
+            _params.data.sig = _signature
+            _params.data.secret = _newSecret
+            _params.data.owner = _owner
+            _params.url = _params.url + '/updateSecret'
+            const response = await axios(_params)
+            //console.log(response.data)
+            return response.data
+        }
+
+        updateSecret = async (_moat,_newSecret) => {
+            let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
+
+            //Putting a warning here, honestly for my sake more than anything else
+
+            const encrypt = await this.getEncryptedAPIKey(_moat);
+            console.log(encrypt[0].api_key);
+            await window.ethereum.send('eth_requestAccounts');
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            console.log(provider);
+            const signer = provider.getSigner();
+            console.log(signer);
+            //const salt = gateway.current.generateSalt();
+            //console.log(salt);
+            const signature = await signer.signMessage(encrypt[0].api_key);
+            const address = await signer.getAddress();
+            console.log(signature)
+            console.log(address)
+            await this.updateSecretInternal(_moat,signature,_newSecret,address);
+            /*const response = await axios(_params)
+            console.log(response.data)*/
+            //return response.data
         }
 
     }

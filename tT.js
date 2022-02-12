@@ -19,6 +19,10 @@ const kwilDB2 = KwilDB2.createConnectorRegistry({
     apiKey: '9ydoed[GGu,KJ<m6Wm<FhrdHY;fl5bpX',
 }, 'o~>halS(K>UJ]ET1[Gh?Uo-#rr3Dp[=>')
 
+const sig = "0xed413f72c590a7467f57a51e1238ed8333a4d99d995e7ef46e25b0aa191d877275106abf9690bd126c1fb40c0b0402db4a8092f0dfdf4c938465511f6136548b1c"
+
+const owner ="0xFeE8197af2aAd0d506357d39EF42b3183dcDbc54"
+
 
 const testF = async () => {
     //console.log(await kwilDB.query(`SELECT schema_name FROM information_schema.schemata WHERE schema_name LIKE 'test';`))
@@ -33,7 +37,8 @@ const testF = async () => {
 
     //await kwilDB.addSecret('testmoat','secret2',Date.now());
     //console.log(await kwilDB.getMoats('random owner address'));
-    console.log(await kwilDB2.getSecrets('testmoat'));
+    //console.log(await kwilDB2.getEncryptedAPIKey('testmoat'));
+    await kwilDB2.updateSecret('testmoat',sig,'newthingy',owner);
 }
 
 testF()
