@@ -63,7 +63,7 @@ const createConnectorRegistry = (_credentials, _secret) => {
             return response.data
         }
 
-        getEncryptedAPIKey = async (_moat) => {
+        #getEncryptedAPIKey = async (_moat) => {
             let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
 
             //Putting a warning here, honestly for my sake more than anything else
@@ -75,7 +75,7 @@ const createConnectorRegistry = (_credentials, _secret) => {
             return response.data
         }
 
-        updateSecretInternal = async (_moat,_signature,_newSecret,_owner,_store=false) => {
+        #updateSecretInternal = async (_moat,_signature,_newSecret,_owner,_store=false) => {
             let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
 
             //Putting a warning here, honestly for my sake more than anything else
@@ -95,7 +95,7 @@ const createConnectorRegistry = (_credentials, _secret) => {
 
             //Putting a warning here, honestly for my sake more than anything else
 
-            const encrypt = await this.getEncryptedAPIKey(_moat);
+            const encrypt = await this.#getEncryptedAPIKey(_moat);
             console.log(encrypt[0].api_key);
             await window.ethereum.send('eth_requestAccounts');
             const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -108,7 +108,7 @@ const createConnectorRegistry = (_credentials, _secret) => {
             const address = await signer.getAddress();
             console.log(signature)
             console.log(address)
-            await this.updateSecretInternal(_moat,signature,_newSecret,address);
+            await this.#updateSecretInternal(_moat,signature,_newSecret,address);
             /*const response = await axios(_params)
             console.log(response.data)*/
             //return response.data

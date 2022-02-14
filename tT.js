@@ -33,12 +33,13 @@ const testF = async () => {
     //kwilDB.query(`CREATE TABLE testtabl2(test_col text)`, true)
     //await kwilDB.storeJPEG('images/img.jpg',b64String,false);
     //await kwilDB.storeFile('text/txt.txt',b64String.string,false);
-    //await kwilDB.addMoat('testmoat','random owner address','randomapikey','superencryptedsecret');
+    //await kwilDB2.addMoat('testmoat1','random owner address','randomapikey','superencryptedsecret');
 
     //await kwilDB.addSecret('testmoat','secret2',Date.now());
-    //console.log(await kwilDB.getMoats('random owner address'));
-    //console.log(await kwilDB2.getEncryptedAPIKey('testmoat'));
-    await kwilDB2.updateSecret('testmoat',sig,'newthingy',owner);
+    //console.log(await kwilDB2.getMoats('random owner address'));
+    //console.log(await kwilDB2.getSecrets('testmoat'));
+    console.log(await kwilDB2.getEncryptedAPIKey('testmoat1'));
+    //await kwilDB2.updateSecret('testmoat',sig,'newthingy',owner);
 }
 
 testF()
