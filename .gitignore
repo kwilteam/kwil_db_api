@@ -100,3 +100,6 @@ public/
 app.yaml
 key.js
 cloud_config/
+
+# Test Files
+testFiles/
