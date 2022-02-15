@@ -4,9 +4,8 @@ const create = (_credentials) => {
     //Cleaning inputs and giving warnings
 
     //Trying to make this idiot-proof
-    if (_credentials.protocol == null || _credentials.host == null || _credentials.apiKey == null || _credentials.moat == null) {
-        throw new Error('Missing a credential.  Mandatory are protocol, host, apiKey, and moat')
-        console.log('Input cleaning for connection is disabled, but I can tell you right now the rest of this shit isnt gonna work')
+    if (_credentials.protocol == null || _credentials.host == null || _credentials.moat == null) {
+        throw new Error('Missing a credential.  Mandatory are protocol, host, privateKey, and moat')
     }
 
     if (_credentials.protocol == 'http' && _credentials.host != 'localhost') {
@@ -27,8 +26,7 @@ const create = (_credentials) => {
         method: 'post',
         timeout: 20000,
         data: {
-            moat: _credentials.moat,
-            apiKey: _credentials.apiKey
+            moat: _credentials.moat
         }
     };
     return params

@@ -1,12 +1,14 @@
 const axios = require('axios')
 const {generateAPIKey} = require('./utils/generateAPIKey.js')
 const {encryptKey} = require('./utils/encryptKey.js')
+const {generateKeyPair} = require('./utils/generateKeyPair.js')
 
 const createMoat = async (_registry, _moat, _signature, _walletAddr) => {
 
-    const apiKey = generateAPIKey()
+    const keys = await generateKeyPair()
+    const privateKey = keys.privateKey
     const secret = generateAPIKey()
-    const encryptedKey = await encryptKey(_signature, _walletAddr, apiKey)
+    const encryptedKey = await encryptKey(_signature, _walletAddr, JSON.stringify(privateKey))
     const encryptedSecret = await encryptKey(_signature, _walletAddr, secret)
 
     const params = {
@@ -15,14 +17,14 @@ const createMoat = async (_registry, _moat, _signature, _walletAddr) => {
         timeout: 20000,
         data: {
             encryptedKey: encryptedKey,
-            key: apiKey,
+            publicKey: keys.publicKey.n,
             moat: _moat,
             address: _walletAddr,
             secret: encryptedSecret
         }
     };
     let response = await axios(params)
-    response.data.apiKey = apiKey
+    response.data.apiKey = privateKey
     response.data.secret = secret
     return response.data
 }
