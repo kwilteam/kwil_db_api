@@ -11,8 +11,16 @@ const kwilDB = KwilDB.createConnector({
     apiKey: '9ydoed[GGu,KJ<m6Wm<FhrdHY;fl5bpX',
 }, 'o~>halS(K>UJ]ET1[Gh?Uo-#rr3Dp[=>')
 
-const kwilDB2 = KwilDB2.createConnectorRegistry({
+/*const kwilDB2 = KwilDB2.createConnectorRegistry({
     host: 'localhost',
+    protocol: 'http',
+    port: 1984,
+    moat: 'test7',
+    apiKey: '9ydoed[GGu,KJ<m6Wm<FhrdHY;fl5bpX',
+}, 'o~>halS(K>UJ]ET1[Gh?Uo-#rr3Dp[=>')*/
+
+const kwilDB2 = KwilDB2.createConnectorRegistry({
+    host: 'registry.kwil.xyz',
     protocol: 'http',
     port: 1984,
     moat: 'test7',
@@ -33,12 +41,12 @@ const testF = async () => {
     //kwilDB.query(`CREATE TABLE testtabl2(test_col text)`, true)
     //await kwilDB.storeJPEG('images/img.jpg',b64String,false);
     //await kwilDB.storeFile('text/txt.txt',b64String.string,false);
-    //await kwilDB2.addMoat('testmoat1','random owner address','randomapikey','superencryptedsecret');
+    //await kwilDB2.addMoat('testmoat1','owner','randomapikey','superencryptedsecret');
 
     //await kwilDB.addSecret('testmoat','secret2',Date.now());
-    //console.log(await kwilDB2.getMoats('random owner address'));
+    console.log(await kwilDB2.getMoats('owner'));
     //console.log(await kwilDB2.getSecrets('testmoat'));
-    console.log(await kwilDB2.getEncryptedAPIKey('testmoat1'));
+    //console.log(await kwilDB2.getEncryptedAPIKey('testmoat1'));
     //await kwilDB2.updateSecret('testmoat',sig,'newthingy',owner);
 }
 
