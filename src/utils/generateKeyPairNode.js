@@ -1,5 +1,6 @@
+let crypto
 try {
-    const crypto = require('crypto')
+    crypto = require('crypto')
 }catch(e){
     const crypto = null
 }

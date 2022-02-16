@@ -5,8 +5,8 @@ let devKey
 let photo
 if (fs.existsSync('./devKey.js')) {
     devKey = require('./devKey.js')
-    /*photo = fs.readFileSync('./headshot.jpg')
-    photo = photo.toString('base64')
+    //photo = fs.readFileSync('./headshot.jpg')
+    //photo = photo.toString('base64')
 }*/
 
 /*const kwilDB = KwilDB.createConnector({
@@ -14,20 +14,20 @@ if (fs.existsSync('./devKey.js')) {
     protocol: 'https',
     moat: 'test13',
     privateKey: devKey.test11Key,
-}, devKey.test11Secret)
+}, devKey.test11Secret)*/
 
-const kwilDB2 = KwilDB.createConnector({
+/*const kwilDB2 = KwilDB.createConnector({
     host: 'localhost',
     protocol: 'http',
     port: 1984,
     moat: 'test12',
     privateKey: devKey.test10Key,
-}, devKey.test10Secret)
-*/
+}, devKey.test10Secret)*/
+
 
 const testF = async () => {
     //console.log(await KwilDB.createMoat('http://localhost:1984', 'test12', 'myPassword', 'myWallet'))
-    //console.log(await KwilDB.createMoat('https://test-db.kwil.xyz', 'test13', 'myPassword', 'myWallet'))
+    //console.log(await KwilDB.createMoat('https://test-db.kwil.xyz', 'test14', 'myPassword', 'myWallet'))
     //console.log(await kwilDB.query(`drop database admin;`))
     //console.log(await kwilDB.query(`CREATE TABLE test_table(test_col varchar(10))`))
     //console.log(await kwilDB2.query(`DROP TABLE test_table;`))
