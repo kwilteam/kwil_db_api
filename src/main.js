@@ -51,8 +51,13 @@ const createConnector = (_credentials, _secret) => {
             return response.data
         }
 
-        createTable = async (_name, _schema) => {
-            await table.createTable(_name.toLowerCase(), _schema, params)
+        preparedStatement = async (_query, _inputs, _store = false) => {
+            let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
+            const dataWrite = createDataWrite({query: _query, inputs: _inputs}, _store, secret, _params.data.moat, privateKey)
+            _params.data = dataWrite
+            _params.url = params.url + '/preparedStatement'
+            const response = await axios(_params)
+            return response.data
         }
 
     }
