@@ -19,62 +19,36 @@ npm install kwildb
 const KwilDB = require('kwildb')
 ```
 
+## Creating a Kwil Data Moat
+Any person can create a moat on Kwil DB.  For the time being, we are allowing anybody to do so for free, however in the future, it will cost a token.
+```js
+const myMoat = await await KwilDB.createMoat('https://test-db.kwil.xyz', 'test-moat', 'mySuperSecretPassword', 'myWalletAddr')
+const privateKey = myMoat.privateKey
+const secret = myMoat.secret
+```
+In testnet, there is no way to retrieve a lost private key or secret.  The only way is for validators to vote to change the public key and for that private key to change the secret, however during testnet, this is not possible.
+
 ## Basic Queries
 In order to access a Kwil Database, the client should use the KwilDB connector.  The connector interfaces with the Kwil Database, which then handles interactions with the underlying relational database (Postgres by default).  When accessed through the connector, the Kwil Database automatically handles synchronization.  All the client needs to do is specify if they want each query to propagate to the rest of the network.
 
 In general, you will want all write operations to sync, while read operations do not sync.  By default, queries will not propagate.
 ```js
-const connector = KwilDB({
-    host: 'localhost',
-    protocol: 'http',
-    port: 1984,
-    user: 'kwil',
-    password: 'password',
-    moat: 'testmoat'
-})
+const kwilDB = KwilDB({
+    host: 'test-db.kwil.xyz',
+    protocol: 'https',
+    moat: 'test',
+    privateKey: privateKey,
+}, secret)
 
 //Query that will sync with the rest of the network
-const result = await connector.query('INSERT INTO ...', true)
+const result = await kwilDB.query('INSERT INTO ...', true)
 
 //Query that won't sync with the rest of the network.
-const result = await connector.query('SELECT ...', false)
+const result = await kwilDB.query('SELECT ...', false)
 
 //Or, if unspecified, it will not sync.
 
-const result = await connector.query('SELECT ...')
-```
-
-## WebSocket (Currently Experimental)
-By default, each Kwil Database utilizes a connection pool when interacting with the underlying database.  However, since the client is interfacing with the Kwil Database, we must use WebSockets in order to achieve the same effect.
-```js
-const kwilSocket = connector.createWebSocket()
-
-kwilSocket.ws.on('message', function(_message) {
-    //If the database returns a result, we will need to parse it.  If it returns an error, it will fail to parse
-    try {
-        console.log(JSON.parse(_message)) //This will be what the query returns
-    } catch(e) {
-        console.log(_message) //Console logging the error message returned by database
-    }
-    
-})
-
-kwilSocket.query('SELECT ...', false)
-```
-
-Currently, only support for queries is built into WebSockets, however full photo, file, and transaction functionality will exist soon.
-
-## Transactions
-Kwil Databases allow for SQL transactions with automatic rollbacks.  The Kwil Database will automatically execute your queries sequentially, and rollback if any fail.
-
-Transactions can also be set to propagate on commit.  If a transaction is set to propagate but triggers a rollback, it will not propagate.
-```js
-const myTransaction = connector.createTransaction()
-
-myTransaction.begin()
-myTransaction.query('INSERT INTO ...') //It is worth noting that there is no second input here for propagating this query
-myTransaction.query('UPDATE ...')
-myTransaction.commit(true) //by passing "true" to commit, the entire transaction will propagate if it does not rollback
+const result = await kwilDB.query('SELECT ...')
 ```
 
 ## Images and Files
@@ -83,7 +57,7 @@ On top of a database, Kwil Databases come loaded with a full-featured file syste
 It is important to note that the beginning of the file path should just be the directory name, and should NOT contain './'.
 
 Images that are submitted should be BASE64 encoded.  Depending on how you read in the image, there may be padding at the start (if you are using the NodeJS 'fs' module, this won't be a problem).  It is important that the padding is removed and only the raw image data is submitted.
-```js0x
+```js
 //Storing a file
 
 const settingsData = {settings: ...}
@@ -91,8 +65,12 @@ await connector.storeFile('users/satoshi/settings', settingsData, true) //Will p
 
 //Storing a JPEG
 
-let satoshiPFP = fs.readFileSync('./satoshiPFP)
+let satoshiPFP = fs.readFileSync('./satoshiPFP')
 satoshiPFP = satoshiPFP.toString('base64')
 
 await connector.storeJPEG('images/satoshi/profile_picture', satoshiPFP, true)
 ```
+
+Images can be found at the /public/{moat}/ endpoint.
+
+If the above image was sent to the data moat "satoshi-social", it would be found at https://test-db.kwil.xyz/public/satoshi-social/images/satoshi/profile_picture.jpg

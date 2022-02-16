@@ -24,7 +24,7 @@ const createMoat = async (_registry, _moat, _signature, _walletAddr) => {
         }
     };
     let response = await axios(params)
-    response.data.apiKey = privateKey
+    response.data.privateKey = privateKey
     response.data.secret = secret
     return response.data
 }
