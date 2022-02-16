@@ -19,17 +19,6 @@ const createConnector = (_credentials, _secret) => {
             return response.data
         }
 
-        getMoats = async (_owner) => {
-            let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
-
-            //Putting a warning here, honestly for my sake more than anything else
-
-            _params.data.owner = _owner
-            _params.url = _params.url + '/getMoats'
-            const response = await axios(_params)
-            return response.data
-        }
-
         storeFile = async (_location, _file, _store=false) => {
             let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
 
