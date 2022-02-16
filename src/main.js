@@ -31,7 +31,6 @@ const createConnector = (_credentials, _secret) => {
             const dataWrite = createDataWrite({file: _file, path: _location}, _store, secret, _params.data.moat, privateKey)
             _params.data = dataWrite
             _params.url = _params.url + '/storeFile'
-            console.log(_params)
             const response = await axios(_params)
             return response.data
         }
@@ -48,7 +47,6 @@ const createConnector = (_credentials, _secret) => {
             const dataWrite = createDataWrite({file: _file, path: _location}, _store, secret, _params.data.moat, privateKey)
             _params.data = dataWrite
             _params.url = _params.url + '/storePhoto'
-            console.log(_params)
             const response = await axios(_params)
             return response.data
         }

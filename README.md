@@ -78,7 +78,7 @@ myTransaction.commit(true) //by passing "true" to commit, the entire transaction
 ```
 
 ## Images and Files
-On top of a database, Kwil Databases come loaded with a full-featured file system.  Files will propagate across nodes just like queries, and can be accessed via the "public/{data_moat}" endpoint.  Currently, Kwil Databases only support files with no extensions (can be used for text) and JPEGs.  The first input is the path to the file/image, the second is the file data, and the third is whether or not it should be propagated (false by default).
+On top of a database, Kwil Databases come loaded with a full-featured file system.  Files will propagate across nodes just like queries, and can be accessed via the "public/{data_moat}" endpoint.  Currently, Kwil Databases only support files with no extensions (can be used for any data) and JPEGs.  The first input is the path to the file/image, the second is the file data, and the third is whether or not it should be propagated (false by default).
 
 It is important to note that the beginning of the file path should just be the directory name, and should NOT contain './'.
 

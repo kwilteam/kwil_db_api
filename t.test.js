@@ -1,4 +1,4 @@
-const hello = require('./t.js')
+/*(const hello = require('./t.js')
 
 test('should be defined', () => {
     expect(hello).toBeDefined()
@@ -6,4 +6,4 @@ test('should be defined', () => {
 
 test('given kevin', () => {
     expect()
-})
+})*/

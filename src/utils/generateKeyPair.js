@@ -38,7 +38,7 @@ const generateKeyPair = async () => {
                     let jwk = await window.crypto.subtle.exportKey('jwk', keyPair.privateKey);
                     let privateKey = rs.KEYUTIL.getKey(jwk);
                     const rsaJWK = rs.KEYUTIL.getJWKFromKey(privateKey);
-                    return { pubKey: getPublicJWKFromPrivateJWK(rsaJWK), privateKey: rsaJWK };
+                    return { publicKey: getPublicJWKFromPrivateJWK(rsaJWK), privateKey: rsaJWK };
                 }
                 catch ({ message } ) {
                     return {
@@ -54,7 +54,7 @@ const generateKeyPair = async () => {
             try {
                 let keyPair = await rs.KEYUTIL.generateKeypair('RSA', 4096);
                 const rsaJWK = await rs.KEYUTIL.getJWKFromKey(keyPair.prvKeyObj);
-                return { pubKey: getPublicJWKFromPrivateJWK(rsaJWK), privateKey: rsaJWK };
+                return { publicKey: getPublicJWKFromPrivateJWK(rsaJWK), privateKey: rsaJWK };
             } catch (e) {
                 console.log(e);
             }

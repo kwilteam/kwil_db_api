@@ -1,4 +1,4 @@
-const KwilDB = require('./index.js')
+/*const KwilDB = require('./index.js')
 const { decryptKey } = require('./src/utils/decryptKey.js')
 const b64String = require('./testFiles/testFile')
 
@@ -16,7 +16,7 @@ const kwilDB = KwilDB.createConnector({
     port: 1984,
     moat: 'test7',
     apiKey: '9ydoed[GGu,KJ<m6Wm<FhrdHY;fl5bpX',
-}, 'o~>halS(K>UJ]ET1[Gh?Uo-#rr3Dp[=>')*/
+}, 'o~>halS(K>UJ]ET1[Gh?Uo-#rr3Dp[=>')
 
 const kwilDB2 = KwilDB.createConnectorRegistry({
     host: 'registry.kwil.xyz',
@@ -49,4 +49,4 @@ const testF = async () => {
     //await kwilDB2.updateSecret('testmoat',sig,'newthingy',owner);
 }
 
-//testF()
+//testF()*/
