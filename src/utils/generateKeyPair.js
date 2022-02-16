@@ -1,5 +1,9 @@
 const rs = require('jsrsasign')
-const crypto = require('crypto')
+try {
+    const crypto = require('crypto')
+}catch(e){
+    const crypto = null
+}
 const generateKeyPairNode = require('./generateKeyPairNode')
 
 const getPublicJWKFromPrivateJWK = (_privateJWK) => {
