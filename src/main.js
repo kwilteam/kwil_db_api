@@ -39,10 +39,10 @@ const createConnector = (_credentials, _secret) => {
                 console.log('WARNING: You started a photo path with either "." or "/".  Natively, files will already write with those.  Maybe consider deleting')
             }
 
-            _params.data.path = _location
-            _params.data.file = _file
-            _params.data.store = _store
+            const dataWrite = createDataWrite({file: _file, path: _location}, _store, secret, _params.data.moat, privateKey)
+            _params.data = dataWrite
             _params.url = _params.url + '/storeFile'
+            console.log(_params)
             const response = await axios(_params)
             return response.data
         }

@@ -1,5 +1,13 @@
 const crypto = require('crypto')
-const pem2jwk = require('pem-jwk').pem2jwk
+const rs = require('jsrsasign')
+
+const createPubJWK = (_modulus) => {
+  return {
+      kty: 'RSA',
+      n: _modulus,
+      e: 'AQAB',
+  };
+}
 
 async function generateKeyPairNode() {
 if (typeof crypto.generateKeyPair == "function") {
@@ -17,7 +25,8 @@ if (typeof crypto.generateKeyPair == "function") {
         }
       }
     )
-    return {publicKey: pem2jwk(keys.publicKey), privateKey: pem2jwk(keys.privateKey)}
+    const privKey = rs.KEYUTIL.getJWK(keys.privateKey)
+    return {publicKey: createPubJWK(privKey.n), privateKey: privKey}
 } else {throw new Error('Not in nodejs')}
 }
 

@@ -16,7 +16,6 @@
     "jsrsasign": "^10.5.4",
     "jssha": "^3.2.0",
     "knex": "^1.0.1",
-    "pem-jwk": "^2.0.0",
     "pg": "^8.7.1",
     "react-native-crypto-js": "^1.0.0",
     "scrypt-js": "^3.0.1",
