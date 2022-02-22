@@ -11,7 +11,7 @@ const createFundingPool = async (_name, _validator, _chain, _token, _privateKey 
         const response = await contract.methods.createMoat(_name, _validator).send({
             gasPrice: gasPrice,
             gas: gasEstimate * 1.2,
-            from: _addr
+            from: _validator
         })
 
         return response
