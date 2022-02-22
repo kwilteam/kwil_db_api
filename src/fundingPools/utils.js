@@ -4,9 +4,12 @@ const abi = require('./abi.json')
 
 const initContract = async (_chain, _token, _privateKey = null) => {
     const endpoint = fundingPools[_chain].RPC
-    const web3 = new Web3(endpoint)
+    const web3 = new Web3(window.ethereum)
     const contractAddr = fundingPools[_chain].tokens[_token]
-    const accounts = await web3.eth.getAccounts()
+    await window.ethereum.enable();
+    //console.log(await window.ethereum.send({method: 'eth_requestAccounts', params: []}))
+    const accounts = await web3.eth.requestAccounts();
+    console.log(accounts);
 
     if (accounts.length < 1 && _privateKey == null) {
         throw new Error('Must have an Eth account')
@@ -31,9 +34,10 @@ const isValidAddress = (_addr) => {
     return Web3.utils.isAddress(_addr)
 }
 
-const getGasPrice = async (_chain = 'ethereum') => {
-    const web3 = new Web3(fundingPools[_chain].RPC)
+const getGasPrice = async () => {
+    const web3 = new Web3(window.ethereum)
     const gasPrice = await web3.eth.getGasPrice()
+    console.log(gasPrice);
     return gasPrice
 }
 
