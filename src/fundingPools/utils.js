@@ -18,8 +18,22 @@ const initContract = async (_chain, _token, _privateKey = null) => {
     return contract
 }
 
+const initContractDry = async (_chain, _token) => {
+    const endpoint = fundingPools[_chain].RPC
+    const web3 = new Web3(endpoint)
+    const contractAddr = fundingPools[_chain].tokens[_token]
+    const contract = new web3.eth.Contract(abi.abi, contractAddr)
+
+    return contract
+}
+
 const isValidAddress = (_addr) => {
     return Web3.utils.isAddress(_addr)
 }
 
-module.exports = {initContract, isValidAddress}
+const getGasPrice = async () => {
+    const gasPrice = await Web3.eth.getGasPrice()
+    return gasPrice
+}
+
+module.exports = {initContract, isValidAddress, initContractDry, getGasPrice}

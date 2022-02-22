@@ -1,6 +1,7 @@
 const KwilDB = require('./index.js')
 const fs = require('fs')
 const {createFundingPool} = require('./src/fundingPools/createFundingPool.js')
+const {getPool} = require('./src/fundingPools/getPool.js')
 
 let devKey
 let photo
@@ -39,7 +40,8 @@ const testF = async () => {
     //console.log(await decryptKey('kwilSIG', '0xEF94BD30AA33de1677D7614D17aA39D493a485F1', 'U2FsdGVkX1+154CCJHU2FUrV7DOd1INDyidhHpf+ciebVG/s3R/uWVPh5PRy6A64L+o/n2Z19L/YUKixGRpl6A=='))
     //console.log(await kwilDB.createTable('table2' , {test: {}, username: 'varchar(100)'}))
     //kwilDB.query(`INSERT INTO testtabl3 (test_col) VALUES ('hi')`, true)
-    console.log(await createFundingPool('test123', '0xAfFDC06cF34aFD7D5801A13d48C92AD39609901D', 'goerli', 'USDC'))
+    //console.log(await createFundingPool('test123', '0xAfFDC06cF34aFD7D5801A13d48C92AD39609901D', 'goerli', 'USDC'))
+    console.log(await getPool('test123', 'goerli', 'USDC'))
 }
 
 //testF()

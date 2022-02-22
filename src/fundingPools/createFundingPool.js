@@ -1,7 +1,4 @@
-const fundingPools = require('./fundingPools.json')
-const abi = require('./abi.json')
-const Web3 = require('web3')
-const { initContract, isValidAddress } = require('./utils')
+const { initContract, isValidAddress, getGasPrice } = require('./utils')
 
 const createFundingPool = async (_name, _validator, _chain, _token, _privateKey = null) => {
     try {
@@ -9,7 +6,7 @@ const createFundingPool = async (_name, _validator, _chain, _token, _privateKey 
             throw new Error(`${_validator} is not a valid address`)
         }
         const contract = await initContract(_chain, _token, _privateKey)
-        const gasPrice = await web3.eth.getGasPrice()
+        const gasPrice = await getGasPrice()
         const gasEstimate = await contract.methods.createMoat(_name, _validator).estimateGas({gasPrice: gasPrice})
         const response = await contract.methods.createMoat(_name, _validator).send({
             gasPrice: gasPrice,
