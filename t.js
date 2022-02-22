@@ -2,6 +2,7 @@ const KwilDB = require('./index.js')
 const fs = require('fs')
 const {createFundingPool} = require('./src/fundingPools/createFundingPool.js')
 const {getPool} = require('./src/fundingPools/getPool.js')
+const { getGasPrice } = require('./src/fundingPools/utils.js')
 
 let devKey
 let photo
@@ -41,7 +42,7 @@ const testF = async () => {
     //console.log(await kwilDB.createTable('table2' , {test: {}, username: 'varchar(100)'}))
     //kwilDB.query(`INSERT INTO testtabl3 (test_col) VALUES ('hi')`, true)
     //console.log(await createFundingPool('test123', '0xAfFDC06cF34aFD7D5801A13d48C92AD39609901D', 'goerli', 'USDC'))
-    console.log(await getPool('test123', 'goerli', 'USDC'))
+    console.log(await getGasPrice())
 }
 
-//testF()
+testF()

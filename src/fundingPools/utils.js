@@ -31,8 +31,9 @@ const isValidAddress = (_addr) => {
     return Web3.utils.isAddress(_addr)
 }
 
-const getGasPrice = async () => {
-    const gasPrice = await Web3.eth.getGasPrice()
+const getGasPrice = async (_chain = 'ethereum') => {
+    const web3 = new Web3(fundingPools[_chain].RPC)
+    const gasPrice = await web3.eth.getGasPrice()
     return gasPrice
 }
 
