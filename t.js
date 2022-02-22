@@ -2,7 +2,6 @@ const KwilDB = require('./index.js')
 const fs = require('fs')
 const {createFundingPool} = require('./src/fundingPools/createFundingPool.js')
 
-
 let devKey
 let photo
 if (fs.existsSync('./devKey.js')) {
