@@ -61,16 +61,23 @@ Images that are submitted should be BASE64 encoded.  Depending on how you read i
 //Storing a file
 
 const settingsData = {settings: ...}
-await connector.storeFile('users/satoshi/settings', settingsData, true) //Will propagate
+await kwilDB.storeFile('users/satoshi/settings', settingsData, true) //Will propagate
 
 //Storing a JPEG
 
 let satoshiPFP = fs.readFileSync('./satoshiPFP')
 satoshiPFP = satoshiPFP.toString('base64')
 
-await connector.storeJPEG('images/satoshi/profile_picture', satoshiPFP, true)
+await kwilDB.storeJPEG('images/satoshi/profile_picture', satoshiPFP, true)
 ```
 
 Images can be found at the /public/{moat}/ endpoint.
 
 If the above image was sent to the data moat "satoshi-social", it would be found at https://test-db.kwil.xyz/public/satoshi-social/images/satoshi/profile_picture.jpg
+
+## Prepared Statements
+In order to prevent against SQL injection attacks, KwilDB ships with the ability for users to submit prepared statements.
+
+```js
+await kwilDB.preparedStatement(`INSERT INTO user_posts (post_id, post_text, post_owner) VALUES ($1, $2, $3)`, ['wnv47vn213re', 'Hello Permaweb!', 'satoshi'], true)
+```

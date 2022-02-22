@@ -1,7 +1,5 @@
 const createRegistry = require("./createRegistry.js");
-const {sha384} = require("./utils/sha384");
 const axios = require("axios");
-const table = require("./createTable");
 const Transaction = require("./transactions");
 const {createWebSocket} = require("./websocket");
 const ethers = require('ethers');

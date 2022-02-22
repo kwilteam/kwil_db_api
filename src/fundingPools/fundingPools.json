@@ -1,0 +1,20 @@
+{
+    "goerli" : {
+        "RPC": "https://rpc.goerli.mudit.blog",
+        "tokens": {
+            "USDC": "0x013b75E935Ab46e38A4e39C44269186C7c520deb"
+        }
+    },
+    "ethereum" : {
+        "RPC": "https://mainnet.infura.io/v3/e93c710cf06945faa49852f9ea1171ef",
+        "tokens": {
+            "USDC": "0xb0c780AdCC7C4316bCAea764e39472a01a43C866"
+        }
+    },
+    "polygon" : {
+        "RPC": "https://polygon-rpc.com",
+        "tokens": {
+            "USDC": "0xb0c780AdCC7C4316bCAea764e39472a01a43C866"
+        }
+    }
+}

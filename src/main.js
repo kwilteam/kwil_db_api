@@ -2,7 +2,6 @@ const axios = require('axios')
 const create = require('./create.js')
 const Transaction = require('./transactions.js')
 const {createWebSocket} = require('./websocket.js')
-const table = require('./createTable.js') //Importing like this because I want the function to be called createTable
 const { createDataWrite } = require('./createDataWrite.js')
 const createConnector = (_credentials, _secret) => {
     const secret = _secret.slice()
