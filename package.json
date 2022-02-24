@@ -1,6 +1,6 @@
 {
   "name": "kwildb",
-  "version": "1.0.60",
+  "version": "1.0.77",
   "main": "index.js",
   "scripts": {
     "test": "jest"

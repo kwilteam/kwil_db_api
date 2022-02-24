@@ -1,6 +1,6 @@
 const { initContract, isValidAddress } = require("./utils")
 
-const transferValidator = async (_pool, _chain, _token, _newValidator, _privateKey = null) => {
+const transferValidator = async (_pool,_addr, _chain, _token, _newValidator, _privateKey = null) => {
     if (!isValidAddress(_newValidator)) {
         throw new Error('Invalid address')
     }
@@ -10,7 +10,7 @@ const transferValidator = async (_pool, _chain, _token, _newValidator, _privateK
 
     const response = await contract.methods.transferValidator(_pool, _newValidator).estimateGas({gasPrice: gasPrice}).send({
         gasPrice: gasPrice,
-        gas: gasEstimate * 1.2,
+        //gas: gasEstimate * 1.2,
         from: _addr
     })
     return response
