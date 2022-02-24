@@ -7,15 +7,11 @@ const createFundingPool = async (_name, _validator, _chain, _token, _privateKey 
         }
         const contract = await initContract(_chain, _token, _privateKey)
         const gasPrice = await getGasPrice()
-        const gasEstimate = await contract.methods.createMoat(_name, _validator).estimateGas({gasPrice: gasPrice})
-        const response = await contract.methods.createMoat(_name, _validator).send({
+        const gasEstimate = await contract.methods.createPool(_name, _validator).estimateGas({gasPrice: gasPrice})
+        const response = await contract.methods.createPool(_name, _validator).send({
             gasPrice: gasPrice,
-<<<<<<< HEAD
-            gas: gasEstimate * 1.2
-=======
             gas: gasEstimate * 1.2,
             from: _validator
->>>>>>> 349e1838c8e1b039f8c204bcade621e5d715dfd8
         })
 
         return response
