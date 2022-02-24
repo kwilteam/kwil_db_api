@@ -1,6 +1,6 @@
 const { initContract, isValidAddress, getGasPrice } = require('./utils')
 
-const createFundingPool = async (_name, _validator, _chain, _token, _moat, _privateKey = null) => {
+const createFundingPool = async (_name,_addr, _validator, _chain, _token, _moat, _privateKey = null) => {
     try {
         if (!isValidAddress(_validator)) {
             throw new Error(`${_validator} is not a valid address`)
@@ -11,14 +11,14 @@ const createFundingPool = async (_name, _validator, _chain, _token, _moat, _priv
         const response = await contract.methods.createPool(_name, _validator, _moat).send({
             gasPrice: gasPrice,
             //gas: Math.ceil(gasEstimate * 1.2),
-            from: _validator
+            from: _addr
         })
 
         return response
 
     } catch(e) {
         console.log(e)
-        return e;
+        return e.toString();
     }
 }
 
