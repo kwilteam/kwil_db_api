@@ -27,7 +27,7 @@ const fundPool = async (_name,_addr ,_chain, _token, _amt, _privateKey = null) =
 
     } catch(e) {
         console.log(e)
-        return 'failure'
+        return e;
     }
 }
 

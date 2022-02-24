@@ -18,7 +18,7 @@ const createFundingPool = async (_name, _validator, _chain, _token, _privateKey 
 
     } catch(e) {
         console.log(e)
-        return 'failure'
+        return e;
     }
 }
 
