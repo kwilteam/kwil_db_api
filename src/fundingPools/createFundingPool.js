@@ -18,7 +18,7 @@ const createFundingPool = async (_name, _validator, _chain, _token, _moat, _priv
 
     } catch(e) {
         console.log(e)
-        return e;
+        return e.toString();
     }
 }
 
