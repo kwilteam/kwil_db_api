@@ -17,7 +17,7 @@ const fundPool = async (_name,_addr ,_chain, _token, _amt, _privateKey = null) =
                 console.log(transactionHash);
             });
         //const gasEstimate = await contract.methods.fundMoat(_name, _amt).estimateGas({gasPrice: gasPrice})
-        const response = await contract.methods.fundMoat(_name, _amt).send({
+        const response = await contract.methods.fundPool(_name, _amt).send({
             //gasPrice: gasPrice,
             //gas: gasEstimate * 1.2,
             from: _addr

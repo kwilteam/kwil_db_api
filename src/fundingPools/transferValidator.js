@@ -1,6 +1,6 @@
 const { initContract, isValidAddress } = require("./utils")
 
-const transferValidator = async (_pool,_addr, _chain, _token, _newValidator, _privateKey = null) => {
+const transferValidator = async (_pool, _addr, _chain, _token, _newValidator, _privateKey = null) => {
     if (!isValidAddress(_newValidator)) {
         throw new Error('Invalid address')
     }

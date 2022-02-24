@@ -2,7 +2,7 @@ const { initContractDry } = require('./utils')
 
 const getPool = async (_pool, _chain, _token) => {
     const contract = await initContractDry(_chain, _token)
-    const response = await contract.methods.moats(_pool).call()
+    const response = await contract.methods.pools(_pool).call()
     return response
 }
 

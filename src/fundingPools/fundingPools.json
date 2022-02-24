@@ -2,7 +2,7 @@
     "goerli" : {
         "RPC": "https://rpc.goerli.mudit.blog",
         "tokens": {
-            "USDC": "0x013b75E935Ab46e38A4e39C44269186C7c520deb"
+            "USDC": "0x07865c6e87b9f70255377e024ace6630c1eaa37f"
         }
     },
     "ethereum" : {
