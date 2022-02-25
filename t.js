@@ -45,4 +45,4 @@ const testF = async () => {
     console.log(await getGasPrice())
 }
 
-testF()
+//testF()
