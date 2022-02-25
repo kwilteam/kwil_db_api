@@ -3,7 +3,10 @@
         "RPC": "https://eth-goerli.alchemyapi.io/v2/7ugsfAn1P2ei1mI5Kj48L6kXourgUeTL",
         "tokens": {
             "USDC": "0x6c1B59FE7F955E8F3DcCD703c80d32c83B6a52c6"
-        }
+        },
+        "token_addresses": {
+            "USDC": "0x07865c6e87b9f70255377e024ace6630c1eaa37f"
+        },
     },
     "ethereum" : {
         "RPC": "https://mainnet.infura.io/v3/e93c710cf06945faa49852f9ea1171ef",
@@ -15,6 +18,9 @@
         "RPC": "https://polygon-mainnet.g.alchemy.com/v2/rmHrTewIiEOvqSby9ApxY3nnhTOVP4G-",
         "tokens": {
             "USDC": "0x2669eC7028A3ab5C7179b8f69448A3CC8d89f9E1"
+        },
+        "token_addresses": {
+            "USDC": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174"
         }
     }
 }
