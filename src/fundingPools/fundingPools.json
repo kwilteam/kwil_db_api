@@ -6,7 +6,7 @@
         },
         "token_addresses": {
             "USDC": "0x07865c6e87b9f70255377e024ace6630c1eaa37f"
-        },
+        }
     },
     "ethereum" : {
         "RPC": "https://mainnet.infura.io/v3/e93c710cf06945faa49852f9ea1171ef",
