@@ -2,10 +2,9 @@ const { initContract, getGasPrice } = require('./utils')
 const fundingPools = require("./fundingPools.json");
 const Web3 = require('web3');
 
-const fundPool = async (_name, _addr ,_chain, _token, _amt, _privateKey = null) => {
+const fundPoolNode = async (_name, _addr ,_chain, _token, _amt, _privateKey = null) => {
     try {
-        const web3 = new Web3(window.ethereum)
-        await window.ethereum.enable();
+        const web3 = new Web3(fundingPools[_chain].RPC)
         const contract = await initContract(_chain, _token, _privateKey)
         const contractAddress = fundingPools[_chain].tokens[_token]
         const gasPrice = await getGasPrice()
@@ -30,4 +29,4 @@ const fundPool = async (_name, _addr ,_chain, _token, _amt, _privateKey = null) 
     }
 }
 
-module.exports = {fundPool}
+module.exports = {fundPoolNode}

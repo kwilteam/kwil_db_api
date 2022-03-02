@@ -6,7 +6,7 @@
         },
         "token_addresses": {
             "USDC": "0x07865c6e87b9f70255377e024ace6630c1eaa37f"
-        },
+        }
     },
     "ethereum" : {
         "RPC": "https://mainnet.infura.io/v3/e93c710cf06945faa49852f9ea1171ef",
@@ -17,10 +17,12 @@
     "polygon" : {
         "RPC": "https://polygon-rpc.com",
         "tokens": {
-            "USDC": "0x2669eC7028A3ab5C7179b8f69448A3CC8d89f9E1"
+            "USDC": "0x2669eC7028A3ab5C7179b8f69448A3CC8d89f9E1",
+            "KRED": "0x23B9a7DbdE896fb6b3Aa14dBB492Df9945C0DACe"
         },
         "token_addresses": {
-            "USDC": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174"
+            "USDC": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+            "KRED": "0x304c18A81725F54Eb95450772796f96BBe5eA079"
         }
     }
 }

@@ -33,7 +33,7 @@ In order to access a Kwil Database, the client should use the KwilDB connector. 
 
 In general, you will want all write operations to sync, while read operations do not sync.  By default, queries will not propagate.
 ```js
-const kwilDB = KwilDB({
+const kwilDB = KwilDB.createConnector({
     host: 'test-db.kwil.xyz',
     protocol: 'https',
     moat: 'test',
