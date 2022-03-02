@@ -16,7 +16,10 @@ npm install kwildb
 ```
 
 ```js
+//Node.js
 const KwilDB = require('kwildb')
+//JS
+import KwilDB from 'kwildb';
 ```
 
 ## Creating a Kwil Data Moat
@@ -81,3 +84,134 @@ In order to prevent against SQL injection attacks, KwilDB ships with the ability
 ```js
 await kwilDB.preparedStatement(`INSERT INTO user_posts (post_id, post_text, post_owner) VALUES ($1, $2, $3)`, ['wnv47vn213re', 'Hello Permaweb!', 'satoshi'], true)
 ```
+
+## Troubleshooting and known issues.
+
+This API depends on Web3, which can cause some issues when used in web development. The following are solutions for using this API with various JS frameworks.
+
+### Web3 and Create-react-app
+
+If you are using create-react-app version >=5 you may run into issues building. This is because NodeJS polyfills are not included in the latest version of create-react-app.
+
+### Solution
+
+
+- Install react-app-rewired and the missing modules
+
+If you are using yarn:
+```bash
+yarn add --dev react-app-rewired process crypto-browserify stream-browserify assert stream-http https-browserify os-browserify url buffer
+```
+
+If you are using npm:
+```bash
+npm install --save-dev react-app-rewired crypto-browserify stream-browserify assert stream-http https-browserify os-browserify url buffer process
+```
+
+- Create `config-overrides.js` in the root of your project folder with the content:
+
+```javascript
+const webpack = require('webpack');
+
+module.exports = function override(config) {
+    const fallback = config.resolve.fallback || {};
+    Object.assign(fallback, {
+        "crypto": require.resolve("crypto-browserify"),
+        "stream": require.resolve("stream-browserify"),
+        "assert": require.resolve("assert"),
+        "http": require.resolve("stream-http"),
+        "https": require.resolve("https-browserify"),
+        "os": require.resolve("os-browserify"),
+        "url": require.resolve("url")
+    })
+    config.resolve.fallback = fallback;
+    config.plugins = (config.plugins || []).concat([
+        new webpack.ProvidePlugin({
+            process: 'process/browser',
+            Buffer: ['buffer', 'Buffer']
+        })
+    ])
+    return config;
+}
+```
+
+- Within `package.json` change the scripts field for start, build and test. Instead of `react-scripts` replace it with `react-app-rewired`
+
+before:
+```typescript
+"scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+},
+```
+
+after:
+```typescript
+"scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+},
+```
+
+The missing Nodejs polyfills should be included now and your app should be functional with web3.
+- If you want to hide the warnings created by the console:
+
+In `config-overrides.js` within the `override` function, add:
+
+```javascript
+config.ignoreWarnings = [/Failed to parse source map/];
+```
+
+### Web3 and Angular
+
+### New solution
+
+If you are using Angular version >11 and run into an issue building, the old solution below will not work. This is because polyfills are not included in the newest version of Angular.
+
+- Install the required dependencies within your angular project:
+
+```bash
+npm install --save-dev crypto-browserify stream-browserify assert stream-http https-browserify os-browserify
+```
+
+- Within `tsconfig.json` add the following `paths` in `compilerOptions` so Webpack can get the correct dependencies
+
+```typescript
+{
+    "compilerOptions": {
+        "paths" : {
+        "crypto": ["./node_modules/crypto-browserify"],
+        "stream": ["./node_modules/stream-browserify"],
+        "assert": ["./node_modules/assert"],
+        "http": ["./node_modules/stream-http"],
+        "https": ["./node_modules/https-browserify"],
+        "os": ["./node_modules/os-browserify"],
+    }
+}
+```
+
+- Add the following lines to `polyfills.ts` file:
+
+```typescript
+import { Buffer } from 'buffer';
+
+(window as any).global = window;
+global.Buffer = Buffer;
+global.process = {
+    env: { DEBUG: undefined },
+    version: '',
+    nextTick: require('next-tick')
+} as any;
+```
+
+### Old solution
+
+If you are using Ionic/Angular at a version >5 you may run into a build error in which modules `crypto` and `stream` are `undefined`
+
+a work around for this is to go into your node-modules and at `/angular-cli-files/models/webpack-configs/browser.js` change  the `node: false` to `node: {crypto: true, stream: true}` as mentioned [here](https://github.com/ethereum/web3.js/issues/2260#issuecomment-458519127)
+
+Another variation of this problem was an [issue opned on angular-cli](https://github.com/angular/angular-cli/issues/1548)

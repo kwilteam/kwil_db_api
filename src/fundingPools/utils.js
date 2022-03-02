@@ -6,6 +6,7 @@ const initContract = async (_chain, _token, _privateKey = null) => {
     const endpoint = fundingPools[_chain].RPC
     const web3 = new Web3(window.ethereum)
     const contractAddr = fundingPools[_chain].tokens[_token]
+    console.log(contractAddr);
     await window.ethereum.enable();
     //console.log(await window.ethereum.send({method: 'eth_requestAccounts', params: []}))
     const accounts = await web3.eth.requestAccounts();
