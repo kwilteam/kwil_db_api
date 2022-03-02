@@ -22,7 +22,7 @@
         },
         "token_addresses": {
             "USDC": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
-            "KRED": "0x304c18A81725F54Eb95450772796f96BBe5eA079"
+            "KRED": "0x8856DfBfd528144D1b17a78232951522C4781001"
         }
     }
 }
