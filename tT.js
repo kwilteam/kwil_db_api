@@ -3,12 +3,12 @@ const { decryptKey } = require('./src/utils/decryptKey.js')
 const devkey = require('./devkey')
 
 const kwilDB = KwilDB.createConnector({
-    host: 'test-db.kwil.xyz',
-    protocol: 'https',
-    port: null,
-    moat: 'testermoat4',
+    host: 'localhost',
+    protocol: 'http',
+    port: 1984,
+    moat: 'moatfornode3',
     privateKey: devkey,
-}, '<,c(n6,P[7oEHB4%pbb.I>$@V4XNRDW}')
+}, '@2c~emqAA:piJrtx*i6_C,qV2E^!6J?<'/*'#yd2x$.u89<e]IMIFv{|kTw;=/xLc..R'*/)
 
 /*const kwilDB2 = KwilDB.createConnectorRegistry({
     host: 'localhost',
@@ -47,9 +47,17 @@ const testF = async () => {
     //console.log(await kwilDB2.getSecrets('testmoat'));
     //console.log(await kwilDB2.getEncryptedAPIKey('testmoat1'));
     //await kwilDB2.updateSecret('testmoat',sig,'newthingy',owner);
-    //console.log(await kwilDB.query(`INSERT INTO tab (bundle_id,height) VALUES ('hie',5)`));
-    //console.log(await kwilDB.query('CREATE TABLE if NOT EXISTS tab(bundle_id varchar(20) PRIMARY KEY, height integer NOT NULL)'));
-    console.log(await kwilDB.query(`SELECT * FROM tab`));
+    let str = new Array(1000 + 1).join( 'i' );
+    //console.log(str);
+    /*for (let i =0;i<1000;i++) {
+        console.log(await kwilDB.query(`INSERT INTO testtab (id, height)
+                                        VALUES (${i},'${str}' )`,true));
+        console.log(i);
+    }*/
+    //console.log(await kwilDB.query('CREATE TABLE if NOT EXISTS testtab(id integer, height varchar NOT NULL)'));
+    //console.log(await kwilDB.query(`SELECT * FROM tab`));
+    //console.log(await KwilDB.createMoat('http://localhost:1984','moatfornode3',"hello","0xFeE8197af2aAd0d506357d39EF42b3183dcDbc54"))
+    console.log(await kwilDB.getMoatDebit())
 }
 
 testF()

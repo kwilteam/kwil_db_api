@@ -14,6 +14,7 @@ const createConnector = (_credentials, _secret) => {
             const dataWrite = createDataWrite(_query, _store, secret, _params.data.moat, privateKey)
             _params.data = dataWrite
             _params.url = params.url + '/raw'
+            console.log(_params)
             const response = await axios(_params)
             return response.data
         }
@@ -55,6 +56,14 @@ const createConnector = (_credentials, _secret) => {
             const dataWrite = createDataWrite({query: _query, inputs: _inputs}, _store, secret, _params.data.moat, privateKey)
             _params.data = dataWrite
             _params.url = params.url + '/preparedStatement'
+            const response = await axios(_params)
+            return response.data
+        }
+
+        getMoatDebit = async () => {
+            let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
+            _params.url = params.url + '/getMoatDebit'
+            //console.log(_params);
             const response = await axios(_params)
             return response.data
         }
