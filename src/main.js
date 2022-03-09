@@ -60,6 +60,14 @@ const createConnector = (_credentials, _secret) => {
             return response.data
         }
 
+        getMoatFunding = async () => {
+            let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
+            _params.url = params.url + '/getMoatFunding'
+            //console.log(_params);
+            const response = await axios(_params)
+            return response.data
+        }
+
         getMoatDebit = async () => {
             let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
             _params.url = params.url + '/getMoatDebit'

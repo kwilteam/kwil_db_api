@@ -57,7 +57,8 @@ const testF = async () => {
     //console.log(await kwilDB.query('CREATE TABLE if NOT EXISTS testtab(id integer, height varchar NOT NULL)'));
     //console.log(await kwilDB.query(`SELECT * FROM tab`));
     //console.log(await KwilDB.createMoat('http://localhost:1984','moatfornode3',"hello","0xFeE8197af2aAd0d506357d39EF42b3183dcDbc54"))
-    console.log(await kwilDB.getMoatDebit())
+    console.log(await kwilDB.getMoatFunding())
+    //console.log(await kwilDB.getMoatDebit())
 }
 
 testF()
