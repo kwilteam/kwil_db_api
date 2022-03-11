@@ -6,11 +6,13 @@ const createFundingPool = async (_name, _addr, _validator, _chain, _token, _moat
             throw new Error(`${_validator} is not a valid address`)
         }
         const contract = await initContract(_chain, _token, _privateKey)
-        //const gasPrice = await getGasPrice()
-        //const gasEstimate = await contract.methods.createPool(_name, _validator, _moat).estimateGas({gasPrice: gasPrice})
+        const gasPrice = await getGasPrice()
+        const gasEstimate = await contract.methods.createPool(_name, _validator, _moat).estimateGas({gasPrice: gasPrice})
+        console.log(gasPrice);
+        console.log(gasEstimate);
         const response = await contract.methods.createPool(_name, _validator, _moat).send({
-            //gasPrice: gasPrice,
-            //gas: Math.ceil(gasEstimate * 1.2),
+            gasPrice: Math.ceil(gasPrice * 1.2),
+            gas: Math.ceil(gasEstimate * 1.2),
             from: _addr
         })
 
