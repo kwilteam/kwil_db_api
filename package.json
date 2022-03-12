@@ -1,6 +1,6 @@
 {
   "name": "kwildbtester",
-  "version": "1.0.15",
+  "version": "1.0.32",
   "main": "index.js",
   "scripts": {
     "test": "jest"
