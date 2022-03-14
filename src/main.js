@@ -19,7 +19,7 @@ const createConnector = (_credentials, _secret) => {
             return response.data
         }
 
-        storeFile = async (_location, _file, _store=false) => {
+       /*storeFile = async (_location, _file, _store=false) => {
             let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
 
             //Putting a warning here, honestly for my sake more than anything else
@@ -49,7 +49,7 @@ const createConnector = (_credentials, _secret) => {
             _params.url = _params.url + '/storePhoto'
             const response = await axios(_params)
             return response.data
-        }
+        }*/
 
         preparedStatement = async (_query, _inputs, _store = false) => {
             let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
