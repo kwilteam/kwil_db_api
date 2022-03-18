@@ -2,7 +2,7 @@ const createRegistry = require("./createRegistry.js");
 const axios = require("axios");
 const Transaction = require("./transactions");
 const {createWebSocket} = require("./websocket");
-const ethers = require('ethers');
+//const ethers = require('ethers');
 const createConnectorRegistry = (_credentials, _secret) => {
     //const secret = _secret.slice()
     const params = createRegistry(_credentials)
@@ -88,7 +88,7 @@ const createConnectorRegistry = (_credentials, _secret) => {
             return response.data
         }
 
-        updateSecret = async (_moat,_newSecret) => {
+        /*updateSecret = async (_moat,_newSecret) => {
             let _params = JSON.parse(JSON.stringify(params)) //we must copy the params since we will be writing to them
 
             //Putting a warning here, honestly for my sake more than anything else
@@ -107,10 +107,10 @@ const createConnectorRegistry = (_credentials, _secret) => {
             console.log(signature)
             console.log(address)
             await this.#updateSecretInternal(_moat,signature,_newSecret,address);
-            /*const response = await axios(_params)
-            console.log(response.data)*/
+            //const response = await axios(_params)
+            //console.log(response.data)
             //return response.data
-        }
+        }*/
 
     }
 

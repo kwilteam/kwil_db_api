@@ -1,6 +1,6 @@
 {
   "name": "kwildb",
-  "version": "1.2.23",
+  "version": "1.2.24",
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -12,7 +12,6 @@
     "axios": "^0.25.0",
     "base64url": "^3.0.1",
     "buffer": "^6.0.3",
-    "ethers": "^5.5.4",
     "jsrsasign": "^10.5.4",
     "jssha": "^3.2.0",
     "react-native-crypto-js": "^1.0.0",
