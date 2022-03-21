@@ -7,23 +7,16 @@ const erc20ABI = require("./erc20ABI.json")
 const fundPool = async (_name, _addr ,_chain, _token, _amt, _privateKey = null) => {
     try {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const signer = provider.getSigner();
         await window.ethereum.enable();
         const contract = await initContract(_chain, _token, _privateKey)
         const contractAddress = fundingPools[_chain].tokens[_token]
-        //const gasPrice = await getGasPrice()
-        //console.log(gasPrice);
-        //let abi = erc20ABI.abi;
-        /*if (_token=="USDC"){
-            abi = usdcABI.abi;
-        }
-        else{
-            abi = erc20ABI.abi;
-        }*/
         console.log(usdcABI.abi);
         console.log(fundingPools[_chain].token_addresses[_token])
-        const allowanceContract = await new ethers.Contract(usdcABI.abi, fundingPools[_chain].token_addresses[_token])
+        const allowanceContract = await new ethers.Contract(fundingPools[_chain].token_addresses[_token],usdcABI.abi,signer)
+        //const allowanceContract = await initContract();
         console.log(allowanceContract);
-        const transactionParameters = {
+        /*const transactionParameters = {
             to: fundingPools[_chain].token_addresses[_token], // Required except during contract publications.
             from:_addr, // must match user's active address.
             data:allowanceContract.methods.approve(contractAddress, _amt).encodeABI(), // Optional, but used for defining smart contract creation and interaction.
@@ -31,12 +24,17 @@ const fundPool = async (_name, _addr ,_chain, _token, _amt, _privateKey = null) 
         const txHash0 = await window.ethereum.request({
             method: "eth_sendTransaction",
             params: [transactionParameters],
-        });
-        console.log(txHash0);
-        function getTransactionReceiptMined(txHash, interval) {
+        });*/
+        //console.log(txHash0);
+        const allowanceTx = await allowanceContract.approve(contractAddress, _amt);
+        const allowanceReceipt = await allowanceTx.wait();
+        const tx = await contract.fundPool(_name, _amt);
+        const receipt = await tx.wait();
+        return receipt;
+        /*function getTransactionReceiptMined(txHash, interval) {
             const self = this;
             const transactionReceiptAsync = function(resolve, reject) {
-                provider.getTransactionReceipt(txHash/*, (error, receipt) => {
+                provider.getTransactionReceipt(txHash, (error, receipt) => {
                     if (error) {
                         reject(error);
                     } else if (receipt == null) {
@@ -46,7 +44,7 @@ const fundPool = async (_name, _addr ,_chain, _token, _amt, _privateKey = null) 
                     } else {
                         resolve(receipt);
                     }
-                }*/);
+                });
             };
             if (typeof txHash === "string") {
                 return new Promise(transactionReceiptAsync);
@@ -54,9 +52,9 @@ const fundPool = async (_name, _addr ,_chain, _token, _amt, _privateKey = null) 
                 throw new Error("Invalid Type: " + txHash);
             }
         }
-        console.log(await getTransactionReceiptMined(txHash0))
+        console.log(await getTransactionReceiptMined(txHash0))*/
 
-        const transactionParameters2 = {
+        /*const transactionParameters2 = {
             to: contractAddress, // Required except during contract publications.
             from:_addr, // must match user's active address.
             data:contract.methods.fundPool(_name, _amt).encodeABI(), // Optional, but used for defining smart contract creation and interaction.
@@ -65,7 +63,7 @@ const fundPool = async (_name, _addr ,_chain, _token, _amt, _privateKey = null) 
             method: "eth_sendTransaction",
             params: [transactionParameters2],
         });
-        console.log(txHash2);
+        console.log(txHash2);*/
 
         /*const gasEstimateApproval = await allowanceContract.methods.approve(contractAddress, _amt).estimateGas({from: _addr})
         console.log(gasEstimateApproval);
@@ -83,7 +81,7 @@ const fundPool = async (_name, _addr ,_chain, _token, _amt, _privateKey = null) 
             from: _addr
         })*/
 
-        return await getTransactionReceiptMined(txHash2);
+        //return await getTransactionReceiptMined(txHash2);
 
     } catch(e) {
         console.log(e)

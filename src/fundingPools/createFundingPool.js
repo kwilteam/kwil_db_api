@@ -10,25 +10,8 @@ const createFundingPool = async (_name, _addr, _validator, _chain, _token, _moat
             throw new Error(`${_validator} is not a valid address`)
         }
         const contract = await initContract(_chain, _token, _privateKey)
-        /*const gasPrice = await getGasPrice()
-        const gasEstimate = await contract.methods.createPool(_name, _validator, _moat).estimateGas({from:_addr})
-        console.log(gasPrice);
-        console.log(gasEstimate);
-        const response = await contract.methods.createPool(_name, _validator, _moat).send({
-            gasPrice: Math.ceil(gasPrice * 1.2),
-            gas: Math.ceil(gasEstimate * 1.2),
-            from: _addr
-        })*/
+
         console.log(contract);
-        /*const transactionParameters = {
-            to: fundingPools[_chain].tokens[_token], // Required except during contract publications.
-            from: _addr, // must match user's active address.
-            data: await contract.createPool(_name, _validator, _moat), // Optional, but used for defining smart contract creation and interaction.
-        };
-        const txHash0 = await window.ethereum.request({
-            method: "eth_sendTransaction",
-            params: [transactionParameters],
-        });*/
         const tx = await contract.createPool(_name, _validator, _moat);
         const receipt = await tx.wait();
         return receipt;
