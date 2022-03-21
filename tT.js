@@ -34,7 +34,7 @@ const owner ="0xFeE8197af2aAd0d506357d39EF42b3183dcDbc54"
 const testF = async () => {
     //console.log(await kwilDB.query(`SELECT schema_name FROM information_schema.schemata WHERE schema_name LIKE 'test';`))
     //console.log(await kwilDB.query('CREATE TABLE IF NOT EXISTS yuh;'))
-    //console.log(await KwilDB.createMoat('https://test-db.kwil.xyz', 'testermoat4', 'kwilSIG', '0xEF94BD30AA33de1677D7614D17aA39D493a485F1'))
+    console.log(await KwilDB.createMoat('https://test-db.kwil.xyz', 'testermoatnodeforsmallbundle1', 'kwilSIG', '0xEF94BD30AA33de1677D7614D17aA39D493a485F1'))
     //console.log(await decryptKey('kwilSIG', '0xEF94BD30AA33de1677D7614D17aA39D493a485F1', 'U2FsdGVkX1+154CCJHU2FUrV7DOd1INDyidhHpf+ciebVG/s3R/uWVPh5PRy6A64L+o/n2Z19L/YUKixGRpl6A=='))
     //console.log(await kwilDB.createTable('table2' , {test: {}, username: 'varchar(100)'}))
     //kwilDB.query(`CREATE TABLE testtabl2(test_col text)`, true)
@@ -57,7 +57,7 @@ const testF = async () => {
     //console.log(await kwilDB.query('CREATE TABLE if NOT EXISTS testtab(id integer, height varchar NOT NULL)'));
     //console.log(await kwilDB.query(`SELECT * FROM tab`));
     //console.log(await KwilDB.createMoat('http://localhost:1984','moatfornode3',"hello","0xFeE8197af2aAd0d506357d39EF42b3183dcDbc54"))
-    console.log(await kwilDB.getMoatFunding())
+    //console.log(await kwilDB.getMoatFunding())
     //console.log(await kwilDB.getMoatDebit())
 }
 
