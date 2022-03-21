@@ -20,7 +20,7 @@ const createFundingPool = async (_name, _addr, _validator, _chain, _token, _moat
             from: _addr
         })*/
         console.log(contract);
-        const transactionParameters = {
+        /*const transactionParameters = {
             to: fundingPools[_chain].tokens[_token], // Required except during contract publications.
             from: _addr, // must match user's active address.
             data: await contract.createPool(_name, _validator, _moat), // Optional, but used for defining smart contract creation and interaction.
@@ -28,9 +28,10 @@ const createFundingPool = async (_name, _addr, _validator, _chain, _token, _moat
         const txHash0 = await window.ethereum.request({
             method: "eth_sendTransaction",
             params: [transactionParameters],
-        });
-        console.log(txHash0);
-        return 1
+        });*/
+        const tx = await contract.createPool(_name, _validator, _moat);
+        const receipt = await tx.wait();
+        return receipt;
 
     } catch(e) {
         console.log(e)
