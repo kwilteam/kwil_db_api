@@ -30,7 +30,7 @@ const createFundingPool = async (_name, _addr, _validator, _chain, _token, _moat
         });
         function getTransactionReceiptMined(txHash, interval) {
             const transactionReceiptAsync = function(resolve, reject) {
-                web3.eth.getTransactionReceipt(txHash, (error, receipt) => {
+                provider.getTransactionReceipt(txHash/*, (error, receipt) => {
                     if (error) {
                         reject(error);
                     } else if (receipt == null) {
@@ -40,7 +40,7 @@ const createFundingPool = async (_name, _addr, _validator, _chain, _token, _moat
                     } else {
                         resolve(receipt);
                     }
-                });
+                }*/);
             };
             if (typeof txHash === "string") {
                 return new Promise(transactionReceiptAsync);

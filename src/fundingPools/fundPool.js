@@ -1,18 +1,18 @@
 const { initContract, getGasPrice } = require('./utils')
 const fundingPools = require("./fundingPools.json");
-const Web3 = require('web3');
+const ethers = require('ethers')
 const usdcABI = require("./usdcABI.json")
 const erc20ABI = require("./erc20ABI.json")
 
 const fundPool = async (_name, _addr ,_chain, _token, _amt, _privateKey = null) => {
     try {
-        const web3 = new Web3(window.ethereum)
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
         await window.ethereum.enable();
         const contract = await initContract(_chain, _token, _privateKey)
         const contractAddress = fundingPools[_chain].tokens[_token]
-        const gasPrice = await getGasPrice()
-        console.log(gasPrice);
-        let abi = erc20ABI.abi;
+        //const gasPrice = await getGasPrice()
+        //console.log(gasPrice);
+        //let abi = erc20ABI.abi;
         /*if (_token=="USDC"){
             abi = usdcABI.abi;
         }
@@ -21,7 +21,7 @@ const fundPool = async (_name, _addr ,_chain, _token, _amt, _privateKey = null) 
         }*/
         console.log(usdcABI.abi);
         console.log(fundingPools[_chain].token_addresses[_token])
-        const allowanceContract = await new web3.eth.Contract(usdcABI.abi, fundingPools[_chain].token_addresses[_token])
+        const allowanceContract = await new ethers.Contract(usdcABI.abi, fundingPools[_chain].token_addresses[_token])
         console.log(allowanceContract);
         const transactionParameters = {
             to: fundingPools[_chain].token_addresses[_token], // Required except during contract publications.
@@ -36,7 +36,7 @@ const fundPool = async (_name, _addr ,_chain, _token, _amt, _privateKey = null) 
         function getTransactionReceiptMined(txHash, interval) {
             const self = this;
             const transactionReceiptAsync = function(resolve, reject) {
-                web3.eth.getTransactionReceipt(txHash, (error, receipt) => {
+                provider.getTransactionReceipt(txHash/*, (error, receipt) => {
                     if (error) {
                         reject(error);
                     } else if (receipt == null) {
@@ -46,7 +46,7 @@ const fundPool = async (_name, _addr ,_chain, _token, _amt, _privateKey = null) 
                     } else {
                         resolve(receipt);
                     }
-                });
+                }*/);
             };
             if (typeof txHash === "string") {
                 return new Promise(transactionReceiptAsync);
