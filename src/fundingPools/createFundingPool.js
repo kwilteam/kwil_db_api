@@ -19,38 +19,18 @@ const createFundingPool = async (_name, _addr, _validator, _chain, _token, _moat
             gas: Math.ceil(gasEstimate * 1.2),
             from: _addr
         })*/
+        console.log(contract);
         const transactionParameters = {
             to: fundingPools[_chain].tokens[_token], // Required except during contract publications.
             from: _addr, // must match user's active address.
-            data: contract.createPool(_name, _validator, _moat).encodeABI(), // Optional, but used for defining smart contract creation and interaction.
+            data: await contract.createPool(_name, _validator, _moat), // Optional, but used for defining smart contract creation and interaction.
         };
         const txHash0 = await window.ethereum.request({
             method: "eth_sendTransaction",
             params: [transactionParameters],
         });
-        function getTransactionReceiptMined(txHash, interval) {
-            const transactionReceiptAsync = function(resolve, reject) {
-                provider.getTransactionReceipt(txHash/*, (error, receipt) => {
-                    if (error) {
-                        reject(error);
-                    } else if (receipt == null) {
-                        setTimeout(
-                            () => transactionReceiptAsync(resolve, reject),
-                            interval ? interval : 500);
-                    } else {
-                        resolve(receipt);
-                    }
-                }*/);
-            };
-            if (typeof txHash === "string") {
-                return new Promise(transactionReceiptAsync);
-            } else {
-                throw new Error("Invalid Type: " + txHash);
-            }
-        }
-        const response = await getTransactionReceiptMined(txHash0)
-        console.log(response);
-        return response
+        console.log(txHash0);
+        return 1
 
     } catch(e) {
         console.log(e)
