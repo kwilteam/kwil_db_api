@@ -1,9 +1,4 @@
-let crypto
-try {
-    crypto = require('crypto')
-}catch(e){
-    const crypto = null
-}
+const crypto = require('crypto')
 const rs = require('jsrsasign')
 
 const createPubJWK = (_modulus) => {

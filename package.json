@@ -1,6 +1,6 @@
 {
   "name": "kwildbtester",
-  "version": "1.0.95",
+  "version": "1.0.99",
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -21,5 +21,8 @@
   },
   "devDependencies": {
     "jest": "^27.4.7"
+  },
+  "browser": {
+    "crypto": false
   }
 }

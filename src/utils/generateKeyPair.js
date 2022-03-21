@@ -1,11 +1,4 @@
 const rs = require('jsrsasign')
-let crypto
-try {
-    crypto = require('crypto')
-}catch(e){
-    const crypto = null
-}
-const generateKeyPairNode = require('./generateKeyPairNode')
 
 const getPublicJWKFromPrivateJWK = (_privateJWK) => {
     //This function takes a private key and returns a public JWK
@@ -21,10 +14,10 @@ const getPublicJWKFromPrivateJWK = (_privateJWK) => {
 
 const generateKeyPair = async () => {
 
-    if (typeof crypto.generateKeyPair == "function") {
+    /*if (typeof crypto.generateKeyPair == "function") {
         const keys = await generateKeyPairNode()
         return keys
-    }
+    }*/
 
     async function WrapperFunction() {
         if (typeof window === 'object') {
