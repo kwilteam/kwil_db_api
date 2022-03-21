@@ -25,7 +25,7 @@ const initContract = async (_chain, _token, _privateKey = null) => {
 
 const initContractDry = async (_chain, _token) => {
     const endpoint = fundingPools[_chain].RPC
-    const provider = new ethers.providers.JsonRpcProvider(endpoint)
+    const provider = new ethers.providers.AlchemyProvider(fundingPools[_chain].provider_network,fundingPools[_chain].APIKey);
     const contractAddr = fundingPools[_chain].tokens[_token]
     const contract = new ethers.Contract(contractAddr,abi.abi,provider )
 
