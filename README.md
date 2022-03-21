@@ -84,10 +84,10 @@ In order to prevent against SQL injection attacks, KwilDB ships with the ability
 ```js
 await kwilDB.preparedStatement(`INSERT INTO user_posts (post_id, post_text, post_owner) VALUES ($1, $2, $3)`, ['wnv47vn213re', 'Hello Permaweb!', 'satoshi'], true)
 ```
-
+## NOTE: kwilDB has been reconfigured to avoid the following issues as of version 1.2.27, this section remains for those using older versions
 ## Troubleshooting and known issues.
 
-This API depends on Web3, which can cause some issues when used in web development. The following are solutions for using this API with various JS frameworks.
+kwildb depends on Web3, which can cause some issues when used in web development. The following are solutions for using this API with various JS frameworks.
 
 ### Web3 and Create-react-app
 
