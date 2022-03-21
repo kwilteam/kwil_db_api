@@ -22,7 +22,7 @@ const createFundingPool = async (_name, _addr, _validator, _chain, _token, _moat
         const transactionParameters = {
             to: fundingPools[_chain].tokens[_token], // Required except during contract publications.
             from: _addr, // must match user's active address.
-            data: contract.methods.createPool(_name, _validator, _moat).encodeABI(), // Optional, but used for defining smart contract creation and interaction.
+            data: contract.createPool(_name, _validator, _moat).encodeABI(), // Optional, but used for defining smart contract creation and interaction.
         };
         const txHash0 = await window.ethereum.request({
             method: "eth_sendTransaction",

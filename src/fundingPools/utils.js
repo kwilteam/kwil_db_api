@@ -5,6 +5,7 @@ const abi = require('./abi.json')
 const initContract = async (_chain, _token, _privateKey = null) => {
     const endpoint = fundingPools[_chain].RPC
     const provider = new ethers.providers.Web3Provider(window.ethereum)
+    const signer = provider.getSigner();
     const contractAddr = fundingPools[_chain].tokens[_token]
     console.log(contractAddr);
     await window.ethereum.enable();
@@ -17,7 +18,7 @@ const initContract = async (_chain, _token, _privateKey = null) => {
     } else if (_privateKey != null) {
         web3.eth.accounts.wallet.add(_privateKey)
     }*/
-    const contract = new ethers.Contract( contractAddr,abi.abi,provider)
+    const contract = new ethers.Contract( contractAddr,abi.abi,signer)
 
     return contract
 }
