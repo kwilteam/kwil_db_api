@@ -1,10 +1,10 @@
 const { initContract, isValidAddress, getGasPrice } = require('./utils')
 const fundingPools = require("./fundingPools.json");
-const Web3 = require('web3');
+const ethers = require('ethers')
 
 const createFundingPool = async (_name, _addr, _validator, _chain, _token, _moat, _privateKey = null) => {
     try {
-        const web3 = new Web3(window.ethereum)
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
         await window.ethereum.enable();
         if (!isValidAddress(_validator)) {
             throw new Error(`${_validator} is not a valid address`)
