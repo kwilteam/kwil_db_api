@@ -9,7 +9,7 @@ const createFundingPool = async (_name, _addr, _validator, _chain, _token, _moat
         }
         const contract = await initContract(_chain, _token, _privateKey)
 
-        console.log(contract);
+        //console.log(contract);
         const tx = await contract.createPool(_name, _validator, _moat);
         const receipt = await tx.wait();
         return receipt;

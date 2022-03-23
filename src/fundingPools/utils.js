@@ -9,17 +9,8 @@ const initContract = async (_chain, _token, _privateKey = null) => {
     const provider = new providers.Web3Provider(window.ethereum)
     const signer = provider.getSigner();
     const contractAddr = fundingPools[_chain].tokens[_token]
-    console.log(contractAddr);
+    //console.log(contractAddr);
     await window.ethereum.enable();
-    //console.log(await window.ethereum.send({method: 'eth_requestAccounts', params: []}))
-    /*const accounts = await web3.eth.requestAccounts();
-    console.log(accounts);
-
-    if (accounts.length < 1 && _privateKey == null) {
-        throw new Error('Must have an Eth account')
-    } else if (_privateKey != null) {
-        web3.eth.accounts.wallet.add(_privateKey)
-    }*/
     const contract = new Contract.Contract( contractAddr,abi.abi,signer)
 
     return contract
@@ -41,7 +32,7 @@ const isValidAddress = (_addr) => {
 const getGasPrice = async () => {
     const provider = new providers.Web3Provider(window.ethereum)
     const gasPrice = await provider.getGasPrice()
-    console.log(gasPrice);
+    //console.log(gasPrice);
     return gasPrice
 }
 
