@@ -29,6 +29,10 @@
         "token_addresses": {
             "USDC": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
             "KRED": "0x8856DfBfd528144D1b17a78232951522C4781001"
+        },
+        "decimals": {
+            "USDC": 6,
+            "KRED": 18
         }
     }
 }

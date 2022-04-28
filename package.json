@@ -1,6 +1,6 @@
 {
-  "name": "kwildb",
-  "version": "1.2.27",
+  "name": "kwildbtester",
+  "version": "1.1.13",
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -14,6 +14,8 @@
     "@ethersproject/providers": "^5.6.1",
     "axios": "^0.25.0",
     "base64url": "^3.0.1",
+    "big-number": "^2.0.0",
+    "bignumber.js": "^9.0.2",
     "buffer": "^6.0.3",
     "jsrsasign": "^10.5.4",
     "jssha": "^3.2.0",
@@ -25,6 +27,6 @@
     "jest": "^27.4.7"
   },
   "browser": {
-    "crypto" : false
+    "crypto": false
   }
 }
