@@ -14,7 +14,6 @@
     "@ethersproject/providers": "^5.6.1",
     "axios": "^0.25.0",
     "base64url": "^3.0.1",
-    "big-number": "^2.0.0",
     "bignumber.js": "^9.0.2",
     "buffer": "^6.0.3",
     "jsrsasign": "^10.5.4",
