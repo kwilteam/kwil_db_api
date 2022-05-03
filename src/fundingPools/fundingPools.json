@@ -23,7 +23,7 @@
         "provider_network": "matic",
         "APIKey": "rmHrTewIiEOvqSby9ApxY3nnhTOVP4G-",
         "tokens": {
-            "USDC": "0x2669eC7028A3ab5C7179b8f69448A3CC8d89f9E1",
+            "USDC": "0xBa3e081C5f6822ad5fA8d879601f17E52C7806Cc",
             "KRED": "0x304c18A81725F54Eb95450772796f96BBe5eA079"
         },
         "token_addresses": {

@@ -25,6 +25,12 @@ const fundPool = async (_name, _addr ,_chain, _token, _amt, _privateKey = null) 
         console.log(BN.toString())
         console.log(_amt)
         console.log(_amt.toString())
+        console.log(_name)
+        console.log(contract);
+        console.log(contract.escrowToken)
+        console.log(await contract.escrowToken())
+        const response = await contract.pools(_name);
+        console.log(response);
         if (_amt.isGreaterThan(BN)) {
             const allowanceTx = await allowanceContract.approve(contractAddress, _amt.toString());
             const allowanceReceipt = await allowanceTx.wait();

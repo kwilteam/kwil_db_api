@@ -3,15 +3,18 @@ const Contract = require('@ethersproject/contracts')
 const address = require('@ethersproject/address')
 const fundingPools = require('./fundingPools.json')
 const abi = require('./abi.json')
+const abi2 = require('./abi2.json')
+const erc20ABI = require("./erc20ABI.json")
 
 const initContract = async (_chain, _token, _privateKey = null) => {
     const endpoint = fundingPools[_chain].RPC
     const provider = new providers.Web3Provider(window.ethereum)
     const signer = provider.getSigner();
     const contractAddr = fundingPools[_chain].tokens[_token]
-    //console.log(contractAddr);
+    console.log(contractAddr);
     await window.ethereum.enable();
-    const contract = new Contract.Contract( contractAddr,abi.abi,signer)
+    const contract = new Contract.Contract( contractAddr,abi2.output.abi,signer)
+    console.log(contract)
 
     return contract
 }

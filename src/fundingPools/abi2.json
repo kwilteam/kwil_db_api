@@ -1,0 +1,301 @@
+{
+  "compiler": {
+    "version": "0.8.10+commit.fc410830"
+  },
+  "language": "Solidity",
+  "output": {
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_escrowToken",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "moatName",
+            "type": "string"
+          },
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "pool",
+            "type": "string"
+          },
+          {
+            "indexed": true,
+            "internalType": "string",
+            "name": "poolName",
+            "type": "string"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "validator",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "creator",
+            "type": "address"
+          }
+        ],
+        "name": "PoolCreated",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "string",
+            "name": "poolName",
+            "type": "string"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "validator",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "creator",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "fundsAdded",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "totalFunds",
+            "type": "uint256"
+          }
+        ],
+        "name": "PoolFunded",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "string",
+            "name": "poolName",
+            "type": "string"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "newValidator",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "oldValidator",
+            "type": "address"
+          }
+        ],
+        "name": "ValidatorTransferred",
+        "type": "event"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "poolName",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "validator",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "moat",
+            "type": "string"
+          }
+        ],
+        "name": "createPool",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "escrowToken",
+        "outputs": [
+          {
+            "internalType": "contract IERC20",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "poolName",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amt",
+            "type": "uint256"
+          }
+        ],
+        "name": "fundPool",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "name": "pools",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "pool",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "validator",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "creator",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "moat",
+            "type": "string"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "poolName",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "newValidator",
+            "type": "address"
+          }
+        ],
+        "name": "transferValidator",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "poolName",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amt",
+            "type": "uint256"
+          }
+        ],
+        "name": "withdrawFromPool",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ],
+    "devdoc": {
+      "kind": "dev",
+      "methods": {},
+      "version": 1
+    },
+    "userdoc": {
+      "kind": "user",
+      "methods": {
+        "createPool(string,address,string)": {
+          "notice": "Creates a new moat (pool). Will fail if another moat of the same name has been registered in the past."
+        },
+        "fundPool(string,uint256)": {
+          "notice": "Adds fund to a moat."
+        },
+        "transferValidator(string,address)": {
+          "notice": "Transfers the validator role of a moat to another address."
+        },
+        "withdrawFromPool(string,uint256)": {
+          "notice": "Allows the validator to withdraw a token from a moat (pool)."
+        }
+      },
+      "version": 1
+    }
+  },
+  "settings": {
+    "compilationTarget": {
+      "contracts/PoolPayment.sol": "PoolPayment"
+    },
+    "evmVersion": "london",
+    "libraries": {},
+    "metadata": {
+      "bytecodeHash": "ipfs"
+    },
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "remappings": []
+  },
+  "sources": {
+    "@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "keccak256": "0xbbc8ac883ac3c0078ce5ad3e288fbb3ffcc8a30c3a98c0fda0114d64fc44fca2",
+      "license": "MIT",
+      "urls": [
+        "bzz-raw://87a7a5d2f6f63f84598af02b8c50ca2df2631cb8ba2453e8d95fcb17e4be9824",
+        "dweb:/ipfs/QmR76hqtAcRqoFj33tmNjcWTLrgNsAaakYwnKZ8zoJtKei"
+      ]
+    },
+    "contracts/PoolPayment.sol": {
+      "keccak256": "0x7ce4719b5e1afcaf2e81611cbe2dfd322e00ea684d520c9ab593ba676ef2d8de",
+      "license": "GPL-3.0",
+      "urls": [
+        "bzz-raw://4d5eda8551be15990d33933449847ad501e806672c29eb0cb5fb74439c236d86",
+        "dweb:/ipfs/QmWendD6z5RP6mymMJwiL3UzN1VmRAg248kLa8tKzEuMLD"
+      ]
+    }
+  },
+  "version": 1
+}
