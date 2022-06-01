@@ -25,7 +25,7 @@ import KwilDB from 'kwildb';
 ## Creating a Kwil Data Moat
 Any person can create a moat on Kwil DB.  For the time being, we are allowing anybody to do so for free, however in the future, it will cost a token.
 ```js
-const myMoat = await await KwilDB.createMoat('https://test-db.kwil.xyz', 'test-moat', 'mySuperSecretPassword', 'myWalletAddr')
+const myMoat = await KwilDB.createMoat('https://test-db.kwil.xyz', 'test-moat', 'mySuperSecretPassword', 'myWalletAddr')
 const privateKey = myMoat.privateKey
 const secret = myMoat.secret
 ```
